@@ -8,6 +8,7 @@ admin_auth_check_login:
   controller: App\Controller\AuthController::login
   methods:    POST
 
+# ROUTE LOGIN WITH FACEBOOK
 admin_auth_facebook_login:
   path:       /admin/login/facebook
   controller: App\Controller\FacebookController::login
@@ -16,5 +17,11 @@ admin_auth_facebook_process_login:
   path:       /admin/login/facebook/process
   controller: App\Controller\FacebookController::process
 
+# ROUTE LOGIN WITH LINKEDIN
+admin_auth_linkedin_login:
+  path:       /admin/login/linkedin
+  controller: App\Controller\LinkedinController::login
 
-
+admin_auth_linkedin_process_login:
+  path:       /admin/login/linkedin/process
+  controller: App\Controller\LinkedinController::process
