@@ -1,3 +1,20 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+admin_auth_login:
+  path:       /admin/login
+  controller: App\Controller\AuthController::index
+  methods:    GET
+
+admin_auth_check_login:
+  path:       /admin/login
+  controller: App\Controller\AuthController::login
+  methods:    POST
+
+admin_auth_facebook_login:
+  path:       /admin/login/facebook
+  controller: App\Controller\FacebookController::login
+
+admin_auth_facebook_process_login:
+  path:       /admin/login/facebook/process
+  controller: App\Controller\FacebookController::process
+
+
+
