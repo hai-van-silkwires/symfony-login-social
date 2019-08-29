@@ -1,3 +1,17 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+admin_auth_login:
+  path:       /admin/login
+  controller: App\Controller\AuthController::index
+  methods:    GET
+
+admin_auth_check_login:
+  path:       /admin/login
+  controller: App\Controller\AuthController::login
+  methods:    POST
+
+admin_auth_linkedin_login:
+  path:       /admin/login/linkedin
+  controller: App\Controller\LinkedinController::login
+
+admin_auth_linkedin_process_login:
+  path:       /admin/login/linkedin/process
+  controller: App\Controller\LinkedinController::process
