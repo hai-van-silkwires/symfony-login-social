@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+  oauth_facebook_id: "%env(OAUTH_FACEBOOK_ID)%"
+  oauth_facebook_secret: "%env(OAUTH_FACEBOOK_SECRET)%"
 
 services:
     # default configuration for services in *this* file
