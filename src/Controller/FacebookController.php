@@ -43,13 +43,18 @@ class FacebookController extends AbstractController
      */
     public function process(ClientRegistry $clientRegistry)
     {
-        $client = $clientRegistry->getClient('facebook');
-
         try {
+            $client = $clientRegistry->getClient('facebook');
             $accessToken = $client->getAccessToken();
             $user = $client->fetchUserFromToken($accessToken);
-        } catch (IdentityProviderException $e) {
 
+            if (is_null($user->getEmail())) {
+                // @TODO: Require input email if user's email is private
+            } else {
+                $result = $this->facebookService->process($user, $accessToken);
+            }
+        } catch (IdentityProviderException $e) {
+            // @TODO: Process when has exception
         }
     }
 }

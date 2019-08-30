@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\LoginSocialRepository")
  */
-class User
+class LoginSocial
 {
     /**
      * @ORM\Id()
@@ -17,24 +17,19 @@ class User
     private $id;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $user_id;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $social_id;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $password;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $full_name;
-
-    /**
-     * @ORM\Column(columnDefinition="TINYINT DEFAULT 1 NOT NULL")
-     */
-    private $status;
+    private $access_token;
 
     /**
      * @ORM\Column(type="datetime")
@@ -46,55 +41,48 @@ class User
      */
     private $updated_at;
 
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $type;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getUserId(): ?int
     {
-        return $this->email;
+        return $this->user_id;
     }
 
-    public function setEmail(string $email): self
+    public function setUserId(int $user_id): self
     {
-        $this->email = $email;
+        $this->user_id = $user_id;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getSocialId(): ?string
     {
-        return $this->password;
+        return $this->social_id;
     }
 
-    public function setPassword(?string $password): self
+    public function setSocialId(string $social_id): self
     {
-        $this->password = $password;
+        $this->social_id = $social_id;
 
         return $this;
     }
 
-    public function getFullName(): ?string
+    public function getAccessToken(): ?string
     {
-        return $this->full_name;
+        return $this->access_token;
     }
 
-    public function setFullName(string $full_name): self
+    public function setAccessToken(string $access_token): self
     {
-        $this->full_name = $full_name;
-
-        return $this;
-    }
-
-    public function getStatus(): ?int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): self
-    {
-        $this->status = $status;
+        $this->access_token = $access_token;
 
         return $this;
     }
@@ -129,7 +117,6 @@ class User
      */
     public function onPrePersist()
     {
-        $this->status = 1;
         $this->created_at = new \DateTime("now");
         $this->updated_at = new \DateTime("now");
     }
@@ -141,5 +128,17 @@ class User
     public function onPreUpdate()
     {
         $this->updated_at = new \DateTime("now");
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
     }
 }
